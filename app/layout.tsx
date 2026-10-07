@@ -6,7 +6,7 @@ import "./globals.css";
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://portfolio-site-navy-nine-40.vercel.app"),
+  metadataBase: new URL("https://omasan-etsano.vercel.app"),
   title: "Omasan Etsano — Software Engineer",
   description: "Software engineer working across full-stack products, AI evaluation, public-health systems and DevOps. Based in Abuja, Nigeria.",
   openGraph: { title: "Omasan Etsano — Software Engineer", description: "Full-stack products, AI evaluation and dependable delivery systems.", images: [{ url: "/omasan.jpg", width: 1100, height: 1438 }] },
