@@ -1,0 +1,2 @@
+import Link from "next/link";import { ArrowUpRight } from "lucide-react";import { SiteHeader } from "../components/portfolio-home.tsx";
+export default function NotFound(){return <main><SiteHeader/><section className="notfound frame contour"><p className="eyebrow">ERROR / 404</p><h1>Lost in the<br/><em>negative space.</em></h1><Link className="talk" href="/">BACK HOME <ArrowUpRight/></Link></section></main>}
