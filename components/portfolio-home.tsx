@@ -40,13 +40,22 @@ export function Art({ tone, number }: { tone: string; number: string }) {
   return <div className={`project-art ${tone}`}><span className="art-orbit"/><span className="art-disc"/><b>{number}</b><em>SELECTED<br/>OBJECT</em></div>;
 }
 
-export function ProjectVisual({ project }: { project: Project }) {
-  return <div className={`project-visual ${project.tone}`}><Image src={project.image} alt={`${project.title} project preview`} fill sizes="(max-width: 900px) 100vw, 50vw"/><div className="project-visual-chrome"><span className="project-brand"><Image src={project.logo} width={24} height={24} alt=""/><b>{project.title}</b></span><span>{project.url ? "LIVE PROJECT" : "PRODUCT BUILD"}</span></div></div>;
+export function ProjectVisual({ project, priority = false }: { project: Project; priority?: boolean }) {
+  const host = project.url ? project.url.replace(/^https?:\/\//, "").replace(/\/$/, "") : "in development";
+  return <div className={`project-visual stage ${project.tone}`}>
+    <span className="stage-grid" aria-hidden/><span className="stage-glow" aria-hidden/><span className="stage-num" aria-hidden>{project.number}</span>
+    <div className={`device ${project.phone ? "with-phone" : ""}`}>
+      <div className="device-bar"><i/><i/><i/><span>{host}</span></div>
+      <div className="device-screen"><Image src={project.image} alt={`${project.title} project preview`} fill priority={priority} sizes="(max-width: 900px) 100vw, 50vw"/></div>
+    </div>
+    {project.phone && <div className="phone"><Image src={project.phone} alt={`${project.title} on mobile`} width={350} height={626} sizes="220px"/></div>}
+    <div className="project-visual-chrome"><span className="project-brand"><Image src={project.logo} width={24} height={24} alt=""/><b>{project.title}</b></span><span>{project.url ? "LIVE PROJECT" : "IN PROGRESS"}</span></div>
+  </div>;
 }
 
 function ProjectCard({ project, index }: { project: typeof projects[number]; index: number }) {
   return <Reveal className={`project-card ${index % 2 ? "offset" : ""}`}><Link href={`/works/${project.slug}`}>
-    <div className="project-image"><ProjectVisual project={project}/><span className="view-pill">VIEW CASE <ArrowUpRight size={15}/></span></div>
+    <div className="project-image"><ProjectVisual project={project} priority={index<2}/><span className="view-pill">VIEW CASE <ArrowUpRight size={15}/></span></div>
     <div className="project-meta"><div><h3>{project.title}</h3><p>{project.type}</p></div><span>{project.year}</span></div>
   </Link></Reveal>;
 }
@@ -69,7 +78,7 @@ export function PortfolioHome() {
     </motion.div>
     <motion.aside className="hero-console" initial={false} aria-label="Professional summary">
       <div className="console-top"><span>ENGINEERING PROFILE</span><b>● AVAILABLE</b></div>
-      <div className="console-name"><small>OMASAN ETSANO</small><strong>Full-stack<br/>software engineer.</strong></div>
+      <div className="console-photo"><Image src="/omasan.jpg" alt="Portrait of Omasan Etsano" fill priority sizes="(max-width: 900px) 90vw, 430px"/><div className="console-name"><small>OMASAN ETSANO</small><strong>Full-stack<br/>software engineer.</strong></div></div>
       <div className="console-grid"><div><span>04</span><small>FEATURED BUILDS</small></div><div><span>03</span><small>CORE DISCIPLINES</small></div></div>
       <div className="console-focus"><small>CURRENT FOCUS</small><p>Product engineering, AI evaluation and dependable delivery systems.</p></div>
       <div className="console-stack">{['React','TypeScript','Python','Docker'].map(x=><TechBadge name={x} key={x}/>)}</div>

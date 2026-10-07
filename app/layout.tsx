@@ -6,8 +6,10 @@ import "./globals.css";
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 
 export const metadata: Metadata = {
-  title: "Omasan Etsano — Full-stack Developer",
-  description: "Full-stack developer building thoughtful websites and digital products with a strong frontend focus.",
+  metadataBase: new URL("https://portfolio-site-navy-nine-40.vercel.app"),
+  title: "Omasan Etsano — Software Engineer",
+  description: "Software engineer working across full-stack products, AI evaluation, public-health systems and DevOps. Based in Abuja, Nigeria.",
+  openGraph: { title: "Omasan Etsano — Software Engineer", description: "Full-stack products, AI evaluation and dependable delivery systems.", images: [{ url: "/omasan.jpg", width: 1100, height: 1438 }] },
 };
 
 export default function RootLayout({
