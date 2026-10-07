@@ -49,7 +49,7 @@ export function ProjectVisual({ project, priority = false }: { project: Project;
       <div className="device-screen"><Image src={project.image} alt={`${project.title} project preview`} fill priority={priority} sizes="(max-width: 900px) 100vw, 50vw"/></div>
     </div>
     {project.phone && <div className="phone"><Image src={project.phone} alt={`${project.title} on mobile`} width={350} height={626} sizes="220px"/></div>}
-    <div className="project-visual-chrome"><span className="project-brand"><Image src={project.logo} width={24} height={24} alt=""/><b>{project.title}</b></span><span>{project.url ? "LIVE PROJECT" : "IN PROGRESS"}</span></div>
+    <div className="project-visual-chrome"><span className="project-brand"><Image src={project.logo} width={24} height={24} alt=""/><b>{project.title}</b></span><span>{project.url ? "LIVE PROJECT" : "PRODUCT BUILD"}</span></div>
   </div>;
 }
 

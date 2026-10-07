@@ -93,3 +93,4 @@
 .project-visual .stage-num{position:absolute;right:6%;top:13%;font:500 clamp(90px,13cqw,190px)/.9 var(--sans);letter-spacing:-.07em;color:transparent;-webkit-text-stroke:1px #ffffff40}
 .about-hero .about-copy h1{font-size:clamp(50px,5.6vw,92px)}
 .device{width:min(86cqw,118cqh)}.device.with-phone{width:min(72cqw,108cqh)}.phone{width:min(30cqw,33cqh)}
+.device{aspect-ratio:1.8}
