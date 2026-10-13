@@ -7,6 +7,7 @@ import { ContactForm } from "./contact-form.tsx";
 export const metadata = {
   title: "Contact — Omasan Etsano",
   description: "Get in touch about product, website or frontend engineering work.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function Contact() {
