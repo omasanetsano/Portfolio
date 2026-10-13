@@ -12,7 +12,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 const serviceIcons = [Code2, Layers3, PenTool, CloudCog];
 const marqueeTools = ['React','TypeScript','Next.js','Supabase','FastAPI','Git/GitHub','Docker','Vercel'];
 
-function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+export function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return <motion.div className={className} initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-8%" }} transition={{ duration: .7, ease }}>{children}</motion.div>;
 }
 
@@ -76,7 +76,7 @@ export function SiteFooter() {
   return <footer className="footer frame contour"><p className="eyebrow light">HAVE A PROJECT IN MIND?</p><Reveal><h2>Let&apos;s build<br/><em>something useful.</em></h2></Reveal><a href={`mailto:${site.email}`} className="footer-email">{site.email} <ArrowUpRight/></a><div className="footer-bottom"><span>© {new Date().getFullYear()} {site.name.toUpperCase()}</span><div><a href={site.github} target="_blank" rel="noreferrer"><SocialMark name="github"/> GITHUB</a><a href={site.linkedin} target="_blank" rel="noreferrer"><SocialMark name="linkedin"/> LINKEDIN</a><Link href="/contact">CONTACT</Link></div><span>ABUJA · NIGERIA</span></div></footer>;
 }
 
-export function PortfolioHome() {
+export function PortfolioHome({ activity }: { activity?: React.ReactNode }) {
   return <main><SiteHeader/><section className="hero frame contour">
     <motion.div className="hero-copy" initial={false}>
       <p className="eyebrow"><span/> FULL-STACK DEVELOPER · FRONTEND FOCUSED</p>
@@ -97,6 +97,7 @@ export function PortfolioHome() {
   <section className="manifesto frame"><Reveal><p className="eyebrow light">03 / CAPABILITIES</p><h2>I combine visual craft with full-stack engineering to build products that look clear and work hard.</h2></Reveal><div className="tool-ticker"><div>{[...marqueeTools,...marqueeTools].map((x,i)=><TechBadge name={x} key={`${x}-${i}`}/>)}</div></div></section>
   <section className="services section frame"><Reveal className="section-head"><p className="eyebrow">04 / SERVICES</p><h2>Focused expertise.<br/><em>Flexible collaboration.</em></h2></Reveal><div className="service-grid">{services.map((s,i)=>{const Icon=serviceIcons[i];return <Reveal className="service" key={s.name}><span>0{i+1}</span><Icon className="service-icon" aria-hidden/><h3>{s.name}</h3><p>{s.detail}</p><ul>{s.tags.map(t=><li key={t}>{t}</li>)}</ul><ArrowUpRight className="service-arrow"/></Reveal>})}</div></section>
   <section className="experience frame"><Reveal className="section-head"><p className="eyebrow">05 / EXPERIENCE</p><h2>Engineering across<br/><em>products, AI and health.</em></h2></Reveal><div className="timeline">{[['2026 — NOW','SHIPD · PROJECT OLYMPUS','AI coding-agent evaluation'],['2026 — NOW','GEORGETOWN GLOBAL HEALTH','DevOps intern'],['2024','FLEXISAF EDUSOFT','Frontend developer intern']].map((r,i)=><Reveal className="timeline-row-wrap" key={i}><Link href="/about" className="timeline-row"><span>{r[0]}</span><h3>{r[1]}</h3><p>{r[2]}</p><ArrowUpRight/></Link></Reveal>)}</div><Link href="/about" className="experience-link">FULL PROFILE <ArrowUpRight size={16}/></Link></section>
-  <section className="faq-section frame"><Reveal className="section-head"><p className="eyebrow">06 / COMMON QUESTIONS</p><h2>Before we begin.</h2></Reveal><FAQ/></section>
+  {activity}
+  <section className="faq-section frame"><Reveal className="section-head"><p className="eyebrow">07 / COMMON QUESTIONS</p><h2>Before we begin.</h2></Reveal><FAQ/></section>
   <SiteFooter/></main>;
 }

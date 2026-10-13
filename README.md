@@ -31,3 +31,12 @@ Adding a project to `projects` in `content/site.ts` gives it a card, a case page
 - `CONTACT_FROM`: a sender address on a domain verified in Resend
 
 Without them the form falls back to opening the visitor's email app.
+
+## GitHub activity
+
+The home page shows the GitHub contribution graph for `site.githubUser`, refreshed every 6 hours.
+
+- Without a token it uses public contributions only.
+- To include private-repository work (counts only, no repo names), add `GITHUB_TOKEN` on Vercel: a fine-grained personal access token from that GitHub account with no extra permissions (public read-only is enough). Redeploy after adding it.
+
+If GitHub can't be reached, the section is hidden rather than showing an error.

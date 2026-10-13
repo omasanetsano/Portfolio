@@ -113,3 +113,27 @@
 .archive-card>div:last-child{padding-bottom:48px}
 .contact select:has(option[value=""]:checked){color:#8f8578}
 .contact select option{color:var(--sand);background:var(--ink)}
+.github{padding:140px 5.2%;border-bottom:1px solid var(--line)}
+.gh-activity{margin-left:25%}
+.gh-stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);margin-bottom:44px}
+.gh-stats>div{padding:26px 22px 22px 0}
+.gh-stats>div+div{border-left:1px solid var(--line);padding-left:22px}
+.gh-stats span{display:block;font-size:clamp(32px,3.4vw,46px);letter-spacing:-.05em;font-weight:500;line-height:1}
+.gh-stats small{display:block;margin-top:12px;font:10px var(--mono);color:#8f8578;letter-spacing:.06em}
+.gh-graph{display:flex;flex-direction:row-reverse;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#3c3934 transparent;padding-bottom:6px}
+.gh-weeks{flex:1 0 auto;display:flex;flex-direction:row-reverse;gap:3px}
+.gh-week{flex:1 0 12px;display:grid;grid-template-rows:18px repeat(7,auto);gap:3px}
+.gh-week b{font:400 10px var(--mono);color:#8f8578;white-space:nowrap;overflow:visible;width:0}
+.gh-week i,.gh-legend i{display:block;aspect-ratio:1;border-radius:2px;background:#1b1a18}
+.gh-week i.empty{background:transparent}
+.gh-activity .l1{background:#4a2920}
+.gh-activity .l2{background:#80371f}
+.gh-activity .l3{background:#bb4a2c}
+.gh-activity .l4{background:var(--coral)}
+.gh-foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:22px;font:10px var(--mono);color:#8f8578}
+.gh-legend{display:inline-flex;align-items:center;gap:4px}
+.gh-legend i{width:11px}
+.gh-legend i:first-child{margin-left:6px}.gh-legend i:last-child{margin-right:6px}
+.gh-foot a{color:var(--sand);display:inline-flex;gap:10px;align-items:center;border-bottom:1px solid currentColor;padding-bottom:7px}
+@media(max-width:900px){.github{padding:95px 24px}.gh-activity{margin-left:0}.gh-stats{grid-template-columns:1fr 1fr}.gh-stats>div:nth-child(3){border-left:0;padding-left:0}.gh-stats>div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media(max-width:480px){.github{padding:80px 18px}}
