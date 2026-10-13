@@ -5,8 +5,7 @@ const LEVELS: Record<string, ContributionDay["level"]> = { NONE: 0, FIRST_QUARTI
 
 const QUERY = `query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{totalContributions weeks{contributionDays{date contributionCount contributionLevel}}}}}}`;
 
-// With GITHUB_TOKEN set (a token belonging to this GitHub user), GitHub's API includes
-// private-repository contributions in the counts, matching what the profile owner sees.
+// With GITHUB_TOKEN set, read the calendar from GitHub's official GraphQL API.
 async function fromGraphQL(login: string, token: string): Promise<Contributions | null> {
   const res = await fetch("https://api.github.com/graphql", {
     method: "POST",
@@ -25,8 +24,8 @@ async function fromGraphQL(login: string, token: string): Promise<Contributions 
   return { total: cal.totalContributions, days };
 }
 
-// Without a token: a public mirror of the profile calendar (public contributions only,
-// unless "Private contributions" is switched on in the GitHub profile settings).
+// Without a token: a public mirror of the profile calendar. Private work is counted only
+// when "Private contributions" is switched on in the GitHub profile settings.
 async function fromPublic(login: string): Promise<Contributions | null> {
   const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${encodeURIComponent(login)}?y=last`);
   if (!res.ok) return null;
