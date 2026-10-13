@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { ArrowUpRight, BriefcaseBusiness, Mail, MessageSquareText, UserRound } from "lucide-react";
-import { site } from "../../content/site.ts";
+import { services, site } from "../../content/site.ts";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -57,7 +57,7 @@ export function ContactForm() {
     <form onSubmit={submit}>
       <label><span><UserRound /> YOUR NAME</span><input required name="name" maxLength={120} placeholder="Name" autoComplete="name" /></label>
       <label><span><Mail /> EMAIL ADDRESS</span><input required type="email" name="email" maxLength={200} placeholder="you@example.com" autoComplete="email" /></label>
-      <label><span><BriefcaseBusiness /> PROJECT TYPE</span><select name="type" defaultValue=""><option value="" disabled>Select a service</option><option>Website design</option><option>Product design</option><option>Full-stack development</option><option>Frontend development</option></select></label>
+      <label><span><BriefcaseBusiness /> PROJECT TYPE</span><select name="type" defaultValue=""><option value="" disabled>Select a service</option>{services.map((s) => <option key={s.name}>{s.name}</option>)}<option>Something else</option></select></label>
       <label><span><MessageSquareText /> ABOUT THE PROJECT</span><textarea required name="message" maxLength={5000} placeholder="A little about the project, timing and goals…" rows={6} /></label>
       <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", height: 0, overflow: "hidden" }}><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
       <button className="talk" type="submit" disabled={status === "sending"}>{status === "sending" ? "SENDING…" : "SEND MESSAGE"} <ArrowUpRight /></button>
