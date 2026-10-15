@@ -24,7 +24,26 @@ async function fromGraphQL(login: string, token: string): Promise<Contributions 
   return { total: cal.totalContributions, days };
 }
 
-// Without a token: a public mirror of the profile calendar. Private work is counted only
+// Without a token: GitHub's own public calendar fragment, which includes private
+// contributions when "Private contributions" is on in the profile settings.
+async function fromProfilePage(login: string): Promise<Contributions | null> {
+  const res = await fetch(`https://github.com/users/${encodeURIComponent(login)}/contributions`);
+  if (!res.ok) return null;
+  const html = await res.text();
+  const counts = new Map<string, number>();
+  for (const m of html.matchAll(/<tool-tip[^>]*\sfor="([^"]+)"[^>]*>\s*(No|\d+) contributions?\b/g)) counts.set(m[1], m[2] === "No" ? 0 : Number(m[2]));
+  const days: ContributionDay[] = [];
+  for (const m of html.matchAll(/<td\b[^>]*>/g)) {
+    const tag = m[0];
+    const date = /data-date="([^"]+)"/.exec(tag)?.[1], id = /\bid="([^"]+)"/.exec(tag)?.[1], level = Number(/data-level="(\d)"/.exec(tag)?.[1]);
+    if (date && id && counts.has(id) && level >= 0 && level <= 4) days.push({ date, count: counts.get(id)!, level: level as ContributionDay["level"] });
+  }
+  if (days.length === 0) return null;
+  days.sort((a, b) => a.date.localeCompare(b.date));
+  return { total: days.reduce((n, d) => n + d.count, 0), days };
+}
+
+// Last resort: a public mirror of the profile calendar. Private work is counted only
 // when "Private contributions" is switched on in the GitHub profile settings.
 async function fromPublic(login: string): Promise<Contributions | null> {
   const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${encodeURIComponent(login)}?y=last`);
@@ -38,5 +57,5 @@ const safe = (p: Promise<Contributions | null>) => p.catch(() => null);
 
 export async function getContributions(login: string): Promise<Contributions | null> {
   const token = process.env.GITHUB_TOKEN;
-  return (token && (await safe(fromGraphQL(login, token)))) || (await safe(fromPublic(login)));
+  return (token && (await safe(fromGraphQL(login, token)))) || (await safe(fromProfilePage(login))) || (await safe(fromPublic(login)));
 }
