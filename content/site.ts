@@ -7,7 +7,7 @@ export const experience = [
 ] as const;
 export const openSource = { period:"OPEN SOURCE", role:"SQL optimizer contribution", company:"sqlglot", summary:"Implemented a simplify_joins optimizer rule following the codebase's conventions, validating correctness against DuckDB." } as const;
 export const education = [
-  { period:"2026 — NOW", degree:"MS Data Science and AI", school:"Campbellsville University", detail:"AI ethics, AI applications, supply-chain AI and research methods." },
+  { period:"2026 — NEAR COMPLETION", degree:"MS Data Science and AI", school:"Campbellsville University", detail:"AI ethics, AI applications, supply-chain AI and research methods." },
   { period:"2021 — 2025", degree:"BSc Software Engineering", school:"Babcock University", detail:"Software engineering foundations and applied product development." },
 ] as const;
 export const certifications = ["IBM DevOps & Software Engineering Professional Certificate","Python for Data Science, AI & Development","Containers with Docker, Kubernetes & OpenShift"] as const;
