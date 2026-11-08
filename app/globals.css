@@ -137,3 +137,7 @@
 .gh-foot a{color:var(--sand);display:inline-flex;gap:10px;align-items:center;border-bottom:1px solid currentColor;padding-bottom:7px}
 @media(max-width:900px){.github{padding:95px 24px}.gh-activity{margin-left:0}.gh-stats{grid-template-columns:1fr 1fr}.gh-stats>div:nth-child(3){border-left:0;padding-left:0}.gh-stats>div:nth-child(n+3){border-top:1px solid var(--line)}}
 @media(max-width:480px){.github{padding:80px 18px}}
+
+.project-visual.stage.teal{--a:#1f8a78;--b:#05231f;--glow:#7be0cf}
+.archive-more{display:flex;flex-direction:column;justify-content:flex-end;min-height:260px;padding:32px!important;background:repeating-linear-gradient(135deg,transparent 0 14px,#ffffff05 14px 15px);transition:background-color .35s}.archive-more:hover{background-color:#11100f}.archive-more h2{font-size:clamp(28px,3vw,40px)!important;letter-spacing:-.04em;max-width:340px;margin:12px 0 10px!important}.archive-more p{position:static!important;color:#8f8578;line-height:1.6;font:13px/1.6 var(--sans)!important;max-width:340px;margin:0}.archive-more svg{position:absolute;top:28px;right:28px;bottom:auto!important;color:var(--coral)}@media(max-width:900px){.archive-more{min-height:200px}}
+.archive-more{position:relative}
